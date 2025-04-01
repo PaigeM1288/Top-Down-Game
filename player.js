@@ -58,7 +58,7 @@ class Player {
 
 
     /**
-     * Draw the player
+     * Draw player before sprites
      */
     draw() {
         fill(255, 0, 0);
