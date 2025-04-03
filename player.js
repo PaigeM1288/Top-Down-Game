@@ -25,9 +25,6 @@ class Player {
      */
     movePlayer() {
         this.#x += this.#xSpeed;
-        if (this.#x > width) {
-            screenTwo();
-        }
 
         this.#y += this.#ySpeed;
     }

@@ -7,9 +7,9 @@ class Character{
     #name;
 
     constructor(npcX, npcY, colour, name){
-        this.#npcnpcX = npcX;
+        this.#npcX = npcX;
         this.#npcY = npcY;
-        this.#npcnpcXSpeed = 0;
+        this.#npcXSpeed = 0;
         this.#npcYSpeed = 0;
         this.#colour = colour;
         this.#name = name;
@@ -50,6 +50,7 @@ class Character{
     setNpcYSpeed(newNpcSpeed){
         this.#npcYSpeed = newNpcSpeed;
     }
+}
 
     class Enemy extends Character {
 
@@ -111,9 +112,8 @@ class Character{
                 this.#state = this.#MOVE_RIGHT;
             }
         }
-    }
 
-    class Npc extends Character{
+    /*class Npc extends Character{
 
         MOVE_RIGHT = 1;
         MOVE_LEFT = 2;
@@ -127,7 +127,7 @@ class Character{
          * creates an NPC that moves randomly at different speeds
          * @param {number} speed
          * @param {number} update
-         */
+         
 
         constructor(speed){
             super(Npc.#SIZE/2, height - Npc.SIZE/2, color(225, 64, 90), "NPC");
@@ -141,10 +141,14 @@ class Character{
             /**
              * has the npc move in random directions
              * @param {number} floor
-             */
+             
         
-            let dir = floor(random(4));
+              let dir = floor(random(4));
+
+            if(dir === 0){
+                this.MOVE_RIGHT;
+            }
         }
 
-    }
+    } */
 }
