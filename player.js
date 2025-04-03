@@ -26,8 +26,7 @@ class Player {
     movePlayer() {
         this.#x += this.#xSpeed;
         if (this.#x > width) {
-            state = SCREEN2;
-            console.log("You win!");
+            screenTwo();
         }
 
         this.#y += this.#ySpeed;
