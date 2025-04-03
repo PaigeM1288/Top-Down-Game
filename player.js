@@ -21,26 +21,16 @@ class Player {
     }
 
     /**
-     * move the player
+     * move the player/ switch screen
      */
-    move() {
+    movePlayer() {
         this.#x += this.#xSpeed;
-        if (this.#x < 0) {
-            console.log("You died :(");
-            state = DIED;
-        } else if (this.#x > width) {
-            state = WIN;
+        if (this.#x > width) {
+            state = SCREEN2;
             console.log("You win!");
         }
 
         this.#y += this.#ySpeed;
-        if (this.#y < 0) {
-            console.log("You died");
-            state = DIED;
-        } else if (this.#y > height) {
-            console.log("You died");
-            state = DIED;
-        }
     }
 
 
