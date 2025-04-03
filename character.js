@@ -26,7 +26,7 @@ class Character{
         return this.#npcX;
     }
 
-    getY(){
+    getnpcY(){
         return this.#npcY;
     }
 
@@ -43,7 +43,7 @@ class Character{
      * changes speed of NPCs
      * @param {number} newNpcSpeed 
      */
-    setNpcnpcXSpeed(newNpcSpeed){
+    setNpcXSpeed(newNpcSpeed){
         this.#npcXSpeed = newNpcSpeed;
     }
 
@@ -56,8 +56,8 @@ class Character{
 
         #MOVE_RIGHT = 1;
         #MOVE_LEFT = 2;
-        /*#MOVE_UP = 3;
-        #MOVE_DOWN = 4;*/
+        #MOVE_UP = 3;
+        #MOVE_DOWN = 4;
         static #SIZE = 50;
         #speed;
         #state;
@@ -81,12 +81,6 @@ class Character{
                 case this.#MOVE_LEFT:
                     this.#moveLeft();
                     break;
-                /*case this.#MOVE_UP:
-                    this.#moveUp();
-                    break;
-                case this.#MOVE_DOWN:
-                    this.#MOVE_DOWN();
-                    break;*/
             }
             super.moveNpc()
         }
@@ -113,7 +107,7 @@ class Character{
             }
         }
 
-    /*class Npc extends Character{
+    class Npc extends Character{
 
         MOVE_RIGHT = 1;
         MOVE_LEFT = 2;
@@ -127,12 +121,13 @@ class Character{
          * creates an NPC that moves randomly at different speeds
          * @param {number} speed
          * @param {number} update
+         */
          
 
         constructor(speed){
             super(Npc.#SIZE/2, height - Npc.SIZE/2, color(225, 64, 90), "NPC");
             this.npcX = random(Npc.SIZE/2, width-Npc.SIZE/2);
-            this.y = random(Npc.SIZE/2, height-Npc.SIZE/2);
+            this.npcY = random(Npc.SIZE/2, height-Npc.SIZE/2);
             this.speed = speed;
             this.state = update();
         }
@@ -141,6 +136,7 @@ class Character{
             /**
              * has the npc move in random directions
              * @param {number} floor
+             */
              
         
               let dir = floor(random(4));
@@ -150,5 +146,5 @@ class Character{
             }
         }
 
-    } */
+    }
 }
