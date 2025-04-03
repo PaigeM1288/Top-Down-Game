@@ -19,7 +19,7 @@ class Character{
         rectMode(CENTER);
         fill(this.#colour);
         square(this.#npcX, this.#npcY, 50);
-        tenpcXt(this.#name, this.#npcX, this.#npcY);
+        text(this.#name, this.#npcX, this.#npcY);
     }
 
     getnpcX(){
@@ -106,13 +106,10 @@ class Character{
                 this.#state = this.#MOVE_RIGHT;
             }
         }
+    }
 
     class Npc extends Character{
 
-        MOVE_RIGHT = 1;
-        MOVE_LEFT = 2;
-        MOVE_UP = 3;
-        MOVE_DOWN = 4;
         static SIZE = 50;
         speed;
         state;
@@ -125,11 +122,9 @@ class Character{
          
 
         constructor(speed){
-            super(Npc.#SIZE/2, height - Npc.SIZE/2, color(225, 64, 90), "NPC");
-            this.npcX = random(Npc.SIZE/2, width-Npc.SIZE/2);
-            this.npcY = random(Npc.SIZE/2, height-Npc.SIZE/2);
+            super(random(Npc.SIZE / 2, width - Npc.SIZE / 2), random(Npc.SIZE / 2, height - Npc.SIZE / 2), color(225, 64, 90), "NPC");
             this.speed = speed;
-            this.state = update();
+            this.update();
         }
 
         update(){
@@ -139,12 +134,33 @@ class Character{
              */
              
         
-              let dir = floor(random(4));
+              let dir = floor(random(5));
 
-            if(dir === 0){
-                this.MOVE_RIGHT;
+            switch(dir){
+                case 0:
+                    this.setNpcXSpeed(this.speed);
+                    this.setNpcYSpeed(0);
+                    break;
+                case 1:
+                    this.setNpcXSpeed(-this.speed);
+                    this.setNpcYSpeed(0);
+                    break;
+                case 2:
+                    this.setNpcXSpeed(0);
+                    this.setNpcYSpeed(-this.speed);
+                    break;
+                case 3:
+                    this.setNpcXSpeed(0);
+                    this.setNpcYSpeed(this.speed);
+                    break;
+                default:
+                    this.setNpcXSpeed(0);
+                    this.setNpcYSpeed(0);
             }
+            
         }
-
-    }
+        draw(){
+            super.draw();
+            super.moveNpc();
+        }
 }
