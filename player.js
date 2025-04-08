@@ -16,8 +16,8 @@ class Player {
      * resets the player to their spawn location
      */
     reset(){
-        this.#x = windowWidth/2;
-        this.#y = windowHeight/2;
+        this.#x = width/2;
+        this.#y = height/2;
     }
 
     /**
@@ -47,7 +47,7 @@ class Player {
      * Draw player before sprites
      */
     draw() {
-        fill(255, 0, 0);
+        fill(255, 190, 0);
         square(this.#x, this.#y, 50);
     }
 }

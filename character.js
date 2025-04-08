@@ -122,45 +122,52 @@ class Character{
          
 
         constructor(speed){
-            super(random(Npc.SIZE / 2, width - Npc.SIZE / 2), random(Npc.SIZE / 2, height - Npc.SIZE / 2), color(225, 64, 90), "NPC");
+            super(random(Npc.SIZE / 2, width - Npc.SIZE / 2), random(Npc.SIZE / 2, height - Npc.SIZE / 2), color(225, 64, 90));
             this.speed = speed;
             this.update();
         }
 
-        update(){
-            /**
-             * has the npc move in random directions
-             * @param {number} floor
-             */
-             
-        
-              let dir = floor(random(5));
-
-            switch(dir){
-                case 0:
-                    this.setNpcXSpeed(this.speed);
-                    this.setNpcYSpeed(0);
-                    break;
-                case 1:
-                    this.setNpcXSpeed(-this.speed);
-                    this.setNpcYSpeed(0);
-                    break;
-                case 2:
-                    this.setNpcXSpeed(0);
-                    this.setNpcYSpeed(-this.speed);
-                    break;
-                case 3:
-                    this.setNpcXSpeed(0);
-                    this.setNpcYSpeed(this.speed);
-                    break;
-                default:
-                    this.setNpcXSpeed(0);
-                    this.setNpcYSpeed(0);
-            }
-            
-        }
         draw(){
             super.draw();
-            super.moveNpc();
+            super.moveNpc()
+        }
+            update(){
+                    /**
+                     * has the npc move in random directions
+                     * @param {number} floor
+                     */
+                    
+                
+                    let dir = floor(random(5));
+
+                    switch(dir){
+                        case 0:
+                            this.moveRight()
+                            break;
+                        case 1:
+                            this.setNpcXSpeed(-this.speed);
+                            this.setNpcYSpeed(0);
+                            break;
+                        case 2:
+                            this.setNpcXSpeed(0);
+                            this.setNpcYSpeed(-this.speed);
+                            break;
+                        case 3:
+                            this.setNpcXSpeed(0);
+                            this.setNpcYSpeed(this.speed);
+                            break;
+                        default:
+                            this.setNpcXSpeed(0);
+                            this.setNpcYSpeed(0);
+                    }
+                }
+
+        moveRight(){
+            this.setNpcXSpeed(this.speed);
+            this.setNpcYSpeed(0);
+            
+            if(this.getnpcX() >= width - Npc.SIZE / 2){
+                this.update();
+            }
         }
 }
