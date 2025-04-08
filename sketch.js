@@ -8,6 +8,7 @@ function setup() {
     npc = new Npc(0.5); // Create an NPC with a speed of 0.5
     enemy = new Enemy(2); // Create an enemy with a speed of 2
     player = new Player;
+   
     
 }
 
