@@ -129,7 +129,7 @@ class Character{
 
         draw(){
             super.draw();
-            super.moveNpc()
+            super.moveNpc();
         }
             update(){
                     /**
@@ -142,32 +142,44 @@ class Character{
 
                     switch(dir){
                         case 0:
-                            this.moveRight()
+                            this.moveRight();
                             break;
                         case 1:
-                            this.setNpcXSpeed(-this.speed);
-                            this.setNpcYSpeed(0);
+                            this.moveLeft();
                             break;
                         case 2:
-                            this.setNpcXSpeed(0);
-                            this.setNpcYSpeed(-this.speed);
+                            this.moveUp();
                             break;
                         case 3:
-                            this.setNpcXSpeed(0);
-                            this.setNpcYSpeed(this.speed);
+                            this.moveDown();
                             break;
                         default:
-                            this.setNpcXSpeed(0);
-                            this.setNpcYSpeed(0);
+                            this.stop();
                     }
                 }
 
         moveRight(){
             this.setNpcXSpeed(this.speed);
             this.setNpcYSpeed(0);
-            
-            if(this.getnpcX() >= width - Npc.SIZE / 2){
-                this.update();
-            }
+        }
+
+        moveLeft(){
+            this.setNpcXSpeed(-this.speed);
+            this.setNpcYSpeed(0);
+        }
+
+        moveUp(){
+            this.setNpcXSpeed(0);
+            this.setNpcYSpeed(-this.speed);
+        }
+
+        moveDown(){
+            this.setNpcXSpeed(0);
+            this.setNpcYSpeed(this.speed);
+        }
+
+        stop(){
+            this.setNpcXSpeed(0);
+            this.setNpcYSpeed(0);
         }
 }
