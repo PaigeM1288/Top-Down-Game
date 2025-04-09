@@ -1,6 +1,4 @@
-class Player {
-    #x;
-    #y;
+class Player extends GameObject {
     #xSpeed = 0;
     #ySpeed = 0;
 
@@ -8,7 +6,8 @@ class Player {
      * creates user controlled Player on the screen
      */
 
-    constructor() {
+    constructor(x, y, w, h, xSpeed, ySpeed) {
+        super(x, y, w, h);
         this.reset();
     }
 
@@ -21,11 +20,10 @@ class Player {
     }
 
     /**
-     * move the player/ switch screen
+     * move the player
      */
-    movePlayer() {
+    move() {
         this.#x += this.#xSpeed;
-
         this.#y += this.#ySpeed;
     }
 

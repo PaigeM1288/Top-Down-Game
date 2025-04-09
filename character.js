@@ -93,7 +93,7 @@ class Character{
                         this.#moveDown();
                         break;
             }
-            super.moveNpc()
+            super.moveNpc();
         }
 
         #moveRight(){
@@ -158,6 +158,7 @@ class Character{
         constructor(speed){
             super(random(Npc.SIZE / 2, width - Npc.SIZE / 2), random(Npc.SIZE / 2, height - Npc.SIZE / 2), color(225, 64, 90));
             this.speed = speed;
+            this.state = this.update();
 
         }
 
@@ -165,55 +166,57 @@ class Character{
             super.draw();
             super.moveNpc();   
         }
-            update(){
-                    /**
-                     * has the npc move in random directions
-                     * @param {number} floor
-                     */
-                    
-                
-                    let dir = floor(random(5));
 
-                    switch(dir){
-                        case 0:
-                            this.moveRight();
-                            break;
-                        case 1:
-                            this.moveLeft();
-                            break;
-                        case 2:
-                            this.moveUp();
-                            break;
-                        case 3:
-                            this.moveDown();
-                            break;
-                        default:
-                            this.stop();
-                    }
+        update(){
+
+            /**
+             * has the npc move in random directions
+             * @param {number} floor
+             */
+            
+            let direction = floor(random(5));
+
+                switch(direction){
+                    case 0:
+                        this.moveRight();
+                        break;
+                    case 1:
+                        this.moveLeft();
+                        break;
+                    case 2:
+                        this.moveUp();
+                        break;
+                    case 3:
+                        this.moveDown();
+                        break;
+                    default:
+                        this.stop();
                 }
+            }
 
-        moveRight(){
-            this.setNpcXSpeed(this.speed);
-            this.setNpcYSpeed(0);
-        }
+            moveRight(){
+                this.setNpcXSpeed(this.speed);
+                this.setNpcYSpeed(0);
+            }
 
-        moveLeft(){
-            this.setNpcXSpeed(-this.speed);
-            this.setNpcYSpeed(0);
-        }
+            moveLeft(){
+                this.setNpcXSpeed(-this.speed);
+                this.setNpcYSpeed(0);
+            }
 
-        moveUp(){
-            this.setNpcXSpeed(0);
-            this.setNpcYSpeed(-this.speed);
-        }
+            moveUp(){
+                this.setNpcXSpeed(0);
+                this.setNpcYSpeed(-this.speed);
+            }
 
-        moveDown(){
-            this.setNpcXSpeed(0);
-            this.setNpcYSpeed(this.speed);
-        }
+            moveDown(){
+                this.setNpcXSpeed(0);
+                this.setNpcYSpeed(this.speed);
+            }
 
-        stop(){
-            this.setNpcXSpeed(0);
-            this.setNpcYSpeed(0);
-        }
+            stop(){
+                this.setNpcXSpeed(0);
+                this.setNpcYSpeed(0);
+            }
+
 }
