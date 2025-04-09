@@ -49,5 +49,21 @@ class GameObject{
         this.#y = newY;
     }
 
+    /**
+     * get width of object
+     * @returns {number} width of object
+    */
+   getWidth(){
+        return this.#w;
+   }
+
+   /**
+    * get height of object
+    * @returns {number} height of object
+    */
+
+    getHeight(){
+        return this.#h;
+    }
     
 }
