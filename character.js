@@ -61,26 +61,37 @@ class Character{
         static #SIZE = 50;
         #speed;
         #state;
+        
        
         /**
          * creates an enemy that moves at a given speed on its own
          */
 
         constructor(speed){
-            super(Enemy.#SIZE/2, height - Enemy.#SIZE/2, color(100, 200, 120), "Enemy");
+            super(Enemy.#SIZE/2, height - Enemy.#SIZE/2, color(100, 200, 120));
             this.#speed = speed;
             this.#state = this.#MOVE_RIGHT;
         }
 
+        /**
+         * @override
+         */
+
         draw(){
-            super.draw();
-            switch(this.#state){
-                case this.#MOVE_RIGHT:
-                    this.#moveRight();
-                    break;
-                case this.#MOVE_LEFT:
-                    this.#moveLeft();
-                    break;
+                super.draw();
+                switch(this.#state){
+                    case this.#MOVE_RIGHT:
+                        this.#moveRight();
+                        break;
+                    case this.#MOVE_LEFT:
+                        this.#moveLeft();
+                        break;
+                    case this.#MOVE_UP:
+                        this.#moveUp();
+                        break;
+                    case this.#MOVE_DOWN:
+                        this.#moveDown();
+                        break;
             }
             super.moveNpc()
         }
@@ -89,10 +100,10 @@ class Character{
             this.setNpcXSpeed(this.#speed);
             this.setNpcYSpeed(0);
 
-            //if hit right wall, move left
+            //if hit right wall, move up
 
             if(this.getnpcX() >= width - Enemy.#SIZE/2){
-                this.#state = this.#MOVE_LEFT;
+                this.#state = this.#MOVE_UP;
             }
         }   
 
@@ -100,9 +111,32 @@ class Character{
             this.setNpcXSpeed(-this.#speed);
             this.setNpcYSpeed(0);
 
-            //if hit left wall, move right
+            //if hit left wall, move down
 
             if(this.getnpcX() <= Enemy.#SIZE/2){
+                this.#state = this.#MOVE_DOWN;
+            }
+           
+        }
+
+        #moveUp(){
+            this.setNpcXSpeed(0);
+            this.setNpcYSpeed(-this.#speed);
+
+            //if hit top wall, move left
+
+            if(this.getnpcY() <= Enemy.#SIZE/2){
+                this.#state = this.#MOVE_LEFT;
+            }
+        }
+
+        #moveDown(){
+            this.setNpcXSpeed(0);
+            this.setNpcYSpeed(this.#speed);
+
+            // If hit bottom wall, move right
+
+            if(this.getnpcY() >= height - Enemy.#SIZE/2){
                 this.#state = this.#MOVE_RIGHT;
             }
         }
@@ -113,23 +147,23 @@ class Character{
         static SIZE = 50;
         speed;
         state;
+      
 
         /**
          * creates an NPC that moves randomly at different speeds
          * @param {number} speed
-         * @param {number} update
          */
          
 
         constructor(speed){
             super(random(Npc.SIZE / 2, width - Npc.SIZE / 2), random(Npc.SIZE / 2, height - Npc.SIZE / 2), color(225, 64, 90));
             this.speed = speed;
-            this.update();
+
         }
 
         draw(){
             super.draw();
-            super.moveNpc();
+            super.moveNpc();   
         }
             update(){
                     /**
