@@ -142,59 +142,23 @@ class Character{
         }
     }
 
-    /*class Npc extends Character{
-
-        static SIZE = 50;
-        speed;
-      
-
-        /**
-         * creates an NPC that moves randomly at different speeds
-         * @param {number} speed
-         
-         
-
-        constructor(speed){
-            super(random(Npc.SIZE / 2, width - Npc.SIZE / 2), random(Npc.SIZE / 2, height - Npc.SIZE / 2), color(225, 64, 90));
-            this.speed = speed;
-            this.step();
-            
-
-        }
-
-        draw(){
-            super.draw();
-            super.moveNpc();
-    
-            
+    class Npc{
+        constructor(){
+            this.tx = 30;
+            this.ty = 100;
         }
 
         step(){
+            this.x = map(noise(this.tx), 0, 1, -1, width);
+            this.y = map(noise(this.ty), 0, 1, -1, height);
 
-            /**
-             * has the npc move in random directions
-             * @param {number} floor
-             
-            
-            const direction = floor(random(4));
+            this.tx += 0.005;
+            this.ty += 0.005;
+        }
 
-               if (direction == 0){
-                this.setNpcXSpeed(this.speed);
-                this.setNpcYSpeed(0);
-               } else if (direction == 1){
-                this.setNpcXSpeed(-this.speed);
-                this.setNpcYSpeed(0);
-               } else if (direction == 2){
-                this.setNpcXSpeed(0);
-                this.setNpcYSpeed(-this.speed);
-               } else if (direction == 3){
-                this.setNpcXSpeed(0);
-                this.setNpcYSpeed(this.speed);
-               } else{
-                this.setNpcXSpeed(0);
-                this.setNpcYSpeed(0);
-               }
-
-            }
-}
-            */
+        show(){
+            rectMode(CENTER);
+            fill(255, 0, 0);
+            square(this.x, this.y, 50);
+        }
+    }
