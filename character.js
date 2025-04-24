@@ -142,81 +142,59 @@ class Character{
         }
     }
 
-    class Npc extends Character{
+    /*class Npc extends Character{
 
         static SIZE = 50;
         speed;
-        state;
       
 
         /**
          * creates an NPC that moves randomly at different speeds
          * @param {number} speed
-         */
+         
          
 
         constructor(speed){
             super(random(Npc.SIZE / 2, width - Npc.SIZE / 2), random(Npc.SIZE / 2, height - Npc.SIZE / 2), color(225, 64, 90));
             this.speed = speed;
-            this.state = this.update();
+            this.step();
+            
 
         }
 
         draw(){
             super.draw();
-            super.moveNpc();   
+            super.moveNpc();
+    
+            
         }
 
-        update(){
+        step(){
 
             /**
              * has the npc move in random directions
              * @param {number} floor
-             */
+             
             
-            let direction = floor(random(5));
+            const direction = floor(random(4));
 
-                switch(direction){
-                    case 0:
-                        this.moveRight();
-                        break;
-                    case 1:
-                        this.moveLeft();
-                        break;
-                    case 2:
-                        this.moveUp();
-                        break;
-                    case 3:
-                        this.moveDown();
-                        break;
-                    default:
-                        this.stop();
-                }
-            }
-
-            moveRight(){
+               if (direction == 0){
                 this.setNpcXSpeed(this.speed);
                 this.setNpcYSpeed(0);
-            }
-
-            moveLeft(){
+               } else if (direction == 1){
                 this.setNpcXSpeed(-this.speed);
                 this.setNpcYSpeed(0);
-            }
-
-            moveUp(){
+               } else if (direction == 2){
                 this.setNpcXSpeed(0);
                 this.setNpcYSpeed(-this.speed);
-            }
-
-            moveDown(){
+               } else if (direction == 3){
                 this.setNpcXSpeed(0);
                 this.setNpcYSpeed(this.speed);
-            }
-
-            stop(){
+               } else{
                 this.setNpcXSpeed(0);
                 this.setNpcYSpeed(0);
-            }
+               }
 
+            }
 }
+            */
