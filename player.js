@@ -5,19 +5,22 @@ class Player extends GameObject {
 
     /**
      * creates user controlled Player on the screen
-     * @param{number}
-     * @param{number}
-     * @param{number}
-     * @param{number}
-     * @param{number} x sp
+     * @param{number} x
+     * @param{number} y
+     * @param{number} w
+     * @param{number} h
+     * @param{number} x speed
      * @param{number} y speed
      * @param{string} colour
      *
      * @returns {Player}
      */
 
-    constructor(x, y, w, h, xSpeed, ySpeed) {
+    constructor(x, y, w, h, xSpeed, ySpeed, colour) {
         super(x, y, w, h);
+        this.#xSpeed = xSpeed;
+        this.#ySpeed = ySpeed;
+        this.#colour = colour;
         this.reset();
     }
 
@@ -55,7 +58,25 @@ class Player extends GameObject {
      * Draw player before sprites
      */
     draw() {
-        fill(255, 190, 0);
-        square(this.#x, this.#y, 50);
+        fill(this.#colour);
+        square(super.getX(), super.getY(), super.getWidth(), super.getHeight());
     }
+
+    getXSpeed(){
+        return this.#xSpeed;
+    }
+
+    getYSpeed(){
+        return this.#ySpeed;
+    }
+
+    setXSpeed(newXSpeed){
+        this.#xSpeed = newXSpeed;
+    }
+
+    setYSpeed(newYSpeed){
+        this.#ySpeed = newYSpeed;
+    }
+
+    
 }
