@@ -142,23 +142,43 @@ class Character{
         }
     }
 
-    class Npc{
-        constructor(){
-            this.tx = 30;
-            this.ty = 100;
+    class Staticnpc extends Character{
+        static STOP = 0;
+        #state;
+        radius = 15;
+        message = null;
+        showMessage = false;
+
+        /**
+         * Creates a static NPC character
+         * @param{number} x the centre x coordinate
+         * @param{number} y the centre y coordinate
+         */
+
+        constructor(x, y){
+            super(x, y);
+            this.#state = Staticnpc.STOP;
         }
 
-        step(){
-            this.x = map(noise(this.tx), 0, 1, -1, width);
-            this.y = map(noise(this.ty), 0, 1, -1, height);
+        draw(){
+            super.draw();
+            switch(this.#state){
+                case Staticnpc.STOP:
+                    this.#stop();
+                    break;
+            }
 
-            this.tx += 0.005;
-            this.ty += 0.005;
+            if(this.showMessage && this.message){
+                fill(255);
+                rect(this.x +20, this.y - 40, textWidth(this.message) + 10, 20);
+                fill(0);
+                
+            }
         }
 
-        show(){
-            rectMode(CENTER);
-            fill(255, 0, 0);
-            square(this.x, this.y, 50);
+        #stop(){
+            this.setNpcXSpeed(0);
+            this.setNpcYSpeed(0);
         }
+
     }
