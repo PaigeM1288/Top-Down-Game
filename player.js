@@ -78,5 +78,20 @@ class Player extends GameObject {
         this.#ySpeed = newYSpeed;
     }
 
-    
+
+    moveRight(){
+        this.setX(this.getX() + this.#xSpeed);
+    }
+
+    moveLeft(){
+        this.setX(this.getX() - this.#xSpeed);
+    }
+
+    moveUp(){
+        this.setY(this.getY() - this.#ySpeed);
+    }
+
+    moveDown(){
+        this.setY(this.getY() + this.#ySpeed);
+    }
 }
