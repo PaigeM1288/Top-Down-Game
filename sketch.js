@@ -5,8 +5,9 @@ let enemy;
 //let player;
 
 function setup() {
-    createCanvas(1000, 1000);
+    createCanvas(windowWidth, windowHeight);
     movingNpc = new Movingnpc();
+    staticNpc = new Staticnpc();
     enemy = new Enemy(5); // Create an enemy with a speed of 5
     //player = new Player();
 }
@@ -17,6 +18,7 @@ function draw() {
     enemy.draw(); 
     movingNpc.show();
     movingNpc.step();
+    staticNpc.draw();
    /* player.draw();
     if (keyIsPressed){
         movePlayer();

@@ -19,6 +19,8 @@ class Character{
         rectMode(CENTER);
         fill(this.#colour);
         square(this.#npcX, this.#npcY, 50);
+        textAlign(CENTER, CENTER);
+        fill(255);
         text(this.#name, this.#npcX, this.#npcY);
     }
 
@@ -68,7 +70,7 @@ class Character{
          */
 
         constructor(speed){
-            super(Enemy.#SIZE/2, height - Enemy.#SIZE/2, color(100, 200, 120));
+            super(Enemy.#SIZE/2, height - Enemy.#SIZE/2, color(100, 200, 120), "Enemy");
             this.#speed = speed;
             this.#state = this.#MOVE_RIGHT;
         }
@@ -140,45 +142,4 @@ class Character{
                 this.#state = this.#MOVE_RIGHT;
             }
         }
-    }
-
-    class Staticnpc extends Character{
-        static STOP = 0;
-        #state;
-        radius = 15;
-        message = null;
-        showMessage = false;
-
-        /**
-         * Creates a static NPC character
-         * @param{number} x the centre x coordinate
-         * @param{number} y the centre y coordinate
-         */
-
-        constructor(x, y){
-            super(x, y);
-            this.#state = Staticnpc.STOP;
-        }
-
-        draw(){
-            super.draw();
-            switch(this.#state){
-                case Staticnpc.STOP:
-                    this.#stop();
-                    break;
-            }
-
-            if(this.showMessage && this.message){
-                fill(255);
-                rect(this.x +20, this.y - 40, textWidth(this.message) + 10, 20);
-                fill(0);
-                
-            }
-        }
-
-        #stop(){
-            this.setNpcXSpeed(0);
-            this.setNpcYSpeed(0);
-        }
-
     }
