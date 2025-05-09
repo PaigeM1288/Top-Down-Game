@@ -1,6 +1,7 @@
 class Player extends GameObject {
     #xSpeed = 0;
     #ySpeed = 0;
+    #colour;
 
     /**
      * creates user controlled Player on the screen
@@ -10,13 +11,16 @@ class Player extends GameObject {
      * @param{number} h
      * @param{number} x speed
      * @param{number} y speed
+     * @param{string} colour
+     *
      * @returns {Player}
      */
 
-    constructor(x, y, w, h, xSpeed, ySpeed) {
+    constructor(x, y, w, h, xSpeed, ySpeed, colour) {
         super(x, y, w, h);
         this.#xSpeed = xSpeed;
         this.#ySpeed = ySpeed;
+        this.#colour = colour;
         this.reset();
     }
 
@@ -24,18 +28,17 @@ class Player extends GameObject {
      * resets the player to their spawn location
      */
     reset(){
-        this.#x = width/2;
-        this.#y = height/2;
+        this.setX(width/2);
+        this.setY(height/2);
     }
 
     /**
      * move the player
      */
     move() {
-        this.#x += this.#xSpeed;
-        this.#y += this.#ySpeed;
+        this.setX(this.getX() + this.#xSpeed);
+        this.setY(this.getY() + this.#ySpeed);
     }
-
 
     /**
      * Change the player's speed
@@ -49,13 +52,12 @@ class Player extends GameObject {
         this.#ySpeed = newSpeed;
     }
 
-
     /**
      * Draw player before sprites
      */
     draw() {
-        fill(200, 130, 155);
-        rect(super.getX(), super.getY(), super.getWidth(), super.getHeight());
+        fill(this.#colour);
+        square(this.getX(), this.getY(), this.getWidth(), this.getHeight());
     }
 
     getXSpeed(){
@@ -65,15 +67,6 @@ class Player extends GameObject {
     getYSpeed(){
         return this.#ySpeed;
     }
-
-    setXSpeed(newXSpeed){
-        this.#xSpeed = newXSpeed;
-    }
-
-    setYSpeed(newYSpeed){
-        this.#ySpeed = newYSpeed;
-    }
-
 
     moveRight(){
         this.setX(this.getX() + this.#xSpeed);
