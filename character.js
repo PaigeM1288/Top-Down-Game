@@ -18,7 +18,7 @@ class Character{
     draw(){
         rectMode(CENTER);
         fill(this.#colour);
-        square(this.#npcX, this.#npcY, 50);
+        square(this.#npcX, this.#npcY, 100);
         textAlign(CENTER, CENTER);
         fill(255);
         text(this.#name, this.#npcX, this.#npcY);
@@ -60,7 +60,7 @@ class Character{
         #MOVE_LEFT = 2;
         #MOVE_UP = 3;
         #MOVE_DOWN = 4;
-        static #SIZE = 50;
+        static #SIZE = 100;
         #speed;
         #state;
         
