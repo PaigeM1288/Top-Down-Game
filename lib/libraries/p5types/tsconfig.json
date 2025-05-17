@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
         "module": "commonjs",
-        "lib": ["dom", "es5"],
+        "lib": ["dom", "es2015", "es2016", "es2017"],
         "noImplicitAny": true,
         "noImplicitThis": true,
         "strictNullChecks": true,
@@ -15,8 +15,6 @@
         "forceConsistentCasingInFileNames": true
     },
     "files": [
-        "index.d.ts",
-        "test/index.ts",
-        "test/unaugmented.ts"
+        "index.d.ts"
     ]
 }
