@@ -34,6 +34,7 @@ function movePlayer() {
                 player.moveRight();
                 break;
             default:
+                player.stop();
                 
         }
     }
@@ -46,5 +47,6 @@ function movePlayer() {
         player.setXSpeed(5);
         player.setYSpeed(5);
     }
+
 
 }
