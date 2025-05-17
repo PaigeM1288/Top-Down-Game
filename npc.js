@@ -15,6 +15,6 @@ class Movingnpc{
     show(){
         rectMode(CENTER);
         fill(255, 0, 0);
-        square(this.x, this.y, 75);
+        square(this.x, this.y, 50);
     }
 }

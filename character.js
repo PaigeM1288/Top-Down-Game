@@ -5,20 +5,22 @@ class Character{
     #npcYSpeed;
     #colour;
     #name;
+    #size;
 
-    constructor(npcX, npcY, colour, name){
+    constructor(npcX, npcY, colour, name, size = 10){
         this.#npcX = npcX;
         this.#npcY = npcY;
         this.#npcXSpeed = 0;
         this.#npcYSpeed = 0;
         this.#colour = colour;
         this.#name = name;
+        this.#size = size;
     }
 
     draw(){
         rectMode(CENTER);
         fill(this.#colour);
-        square(this.#npcX, this.#npcY, 100);
+        square(this.#npcX, this.#npcY, this.#size);
         textAlign(CENTER, CENTER);
         fill(255);
         text(this.#name, this.#npcX, this.#npcY);
@@ -60,7 +62,7 @@ class Character{
         #MOVE_LEFT = 2;
         #MOVE_UP = 3;
         #MOVE_DOWN = 4;
-        static #SIZE = 100;
+        static #SIZE = 50;
         #speed;
         #state;
         
@@ -70,7 +72,7 @@ class Character{
          */
 
         constructor(speed){
-            super(Enemy.#SIZE/2, height - Enemy.#SIZE/2, color(100, 200, 120), "Enemy");
+            super(Enemy.#SIZE/2, height - Enemy.#SIZE/2, color(100, 200, 120), "Enemy", 50);
             this.#speed = speed;
             this.#state = this.#MOVE_RIGHT;
         }

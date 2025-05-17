@@ -63,10 +63,6 @@ class Treasure extends StationaryObject{
     constructor(x, y, w, h){
         super(x, y, w, h, 0, color(255, 204, 0));
     }
-
-    getPointValue(){
-        // gets point value of treasure
-    }
 }
 
 class Cutter extends StationaryObject{
