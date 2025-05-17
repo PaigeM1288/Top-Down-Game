@@ -3,7 +3,7 @@ let enemy;
 let player;
 
 function setup() {
-    createCanvas(windowWidth, windowHeight);
+    createCanvas(1000, 1000);
     movingNpc = new Movingnpc();
     enemy = new Enemy(5); // Create an enemy with a speed of 5
     player = new Player(width/2, height/2, 75, 75, 5, 5, color(0, 0, 255)); // Create player with a 75x 75 size, a speed of 5 and in the colour blue
@@ -33,6 +33,8 @@ function movePlayer() {
             case 'd':
                 player.moveRight();
                 break;
+            default:
+                
         }
     }
 
@@ -44,4 +46,5 @@ function movePlayer() {
         player.setXSpeed(5);
         player.setYSpeed(5);
     }
+
 }

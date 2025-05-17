@@ -2,6 +2,7 @@ class Player extends GameObject {
     #xSpeed = 0;
     #ySpeed = 0;
     #colour;
+    static #SIZE = 75;
 
     /**
      * creates user controlled Player on the screen
@@ -38,6 +39,10 @@ class Player extends GameObject {
     move() {
         this.setX(this.getX() + this.#xSpeed);
         this.setY(this.getY() + this.#ySpeed);
+
+        if(this.getX() <= Player.#SIZE/2){
+            playerStop();
+        }
     }
 
     /**
