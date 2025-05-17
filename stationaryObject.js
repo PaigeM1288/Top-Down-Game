@@ -47,7 +47,7 @@ class Bush extends StationaryObject{
      */
 
     constructor(x, y, w, h){
-        super(x, y, w, h, 1, color(0, 255, 0));
+        super(x, y, w, h, 1, color(110, 255, 10));
     }
 }
 
@@ -77,4 +77,18 @@ class Cutter extends StationaryObject{
     constructor(x, y, w, h){
         super(x, y, w, h, 0, color(100));
     }
+}
+
+class Exit extends StationaryObject{
+    /**
+     * creates an exit point for player
+     *@param {number} x x coordinate
+     * @param {number} y y coordinate
+     * @param {number} w width of exit
+     * @param {number} h height of exit
+     */
+
+     constructor(x, y, w, h){
+        super(x, y, w, h, 1, color(150));
+     }
 }

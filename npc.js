@@ -1,7 +1,7 @@
 class Movingnpc{
     constructor(){
         this.tx = 30;
-        this.ty = 100;
+        this.ty = 80;
     }
 
     step(){

@@ -5,12 +5,13 @@ let bushes;
 let grid;
 let treasures;
 let cutters;
+let exit;
 
 function setup() {
     createCanvas(1000, 1000);
     movingNpc = new Movingnpc();
     enemy = new Enemy(5); // Create an enemy with a speed of 5
-    player = new Player(width/2, height/2, 50, 50, 5, 5, color(0, 0, 255)); // Create player with a 75x 75 size, a speed of 5 and in the colour blue
+    player = new Player(width/2, height/2, 40, 40, 5, 5, color(0, 0, 255)); // Create player with a 40x 40 size, a speed of 5 and in the colour blue
     createBushes();
     grid = new Grid(100);
     addBushes();
@@ -18,6 +19,8 @@ function setup() {
     addTreasures();
     createCutters();
     addCutters();
+    createExit();
+    addExit();
 }
 
 function draw() {
@@ -29,6 +32,7 @@ function draw() {
     drawBushes();
     drawTreasure();
     drawCutters();
+    drawExit();
     if (keyIsPressed) {
     movePlayer();
     }
@@ -127,6 +131,10 @@ function createCutters(){
     cutters = [new Cutter(300, 300, 25, 25)];
 }
 
+function createExit() {
+    exit = new Exit(980, 900, 50, 50); // Create exit in bottom right corner
+}
+
 function addBushes(){
     for(const bush of bushes){
         grid.addToGrid(bush);
@@ -145,6 +153,10 @@ function addCutters(){
     }
 }
 
+function addExit() {
+    grid.addToGrid(exit);
+}
+
 function drawBushes(){
     for(const bush of bushes){
         bush.draw();
@@ -161,4 +173,8 @@ function drawCutters(){
     for(const cutter of cutters){
         cutter.draw();
     }
+}
+
+function drawExit() {
+    exit.draw();
 }
