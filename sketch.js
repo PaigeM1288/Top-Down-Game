@@ -13,6 +13,14 @@ const WIN = 2;
 const DIED = 3;
 let state = START;
 
+let amulet;
+let bg;
+
+function preload(){
+    bg = loadImage("assets/background.png");
+    amulet = loadImage("assets/Amulet.png");
+}
+
 function setup() {
     createCanvas(1000, 1000);
     movingNpc = new Movingnpc();
@@ -31,6 +39,7 @@ function setup() {
 
 function draw() {
     background(255);
+    image(bg, 0, 0, 1000, 1000);
     switch(state){
         case START:
             drawStart();
@@ -40,7 +49,6 @@ function draw() {
             movingNpc.show();
             movingNpc.step();
             drawTreasure();
-            drawCutters();
             drawExit();
             player.draw();
             drawBushes();
@@ -65,33 +73,38 @@ function draw() {
 
     function movePlayer(){
     let newX, newY;
-        switch(key.toLowerCase()) {
-            case 'w':
-                newY = player.getY() - player.getYSpeed();
-                if(!grid.isOccupied(player.getX(), newY) && !grid.isOccupied(player.getX() + player.getWidth(), newY)){
-                    player.moveUp();
-                }
-                break;
-            case 'a':
-                newX = player.getX() - player.getXSpeed();
-                if(!grid.isOccupied(newX, player.getY()) && !grid.isOccupied(newX, player.getY() + player.getHeight())){
-                    player.moveLeft();
-                }
-                break;
-            case 's':
-                newY = player.getY() + player.getYSpeed() + player.getHeight();
-                if(!grid.isOccupied(player.getX(), newY) && !grid.isOccupied(player.getX() + player.getWidth(), newY)){
-                    player.moveDown();
-                }
-                break;
-            case 'd':
-                newX = player.getX() + player.getXSpeed() + player.getWidth();
-                if(!grid.isOccupied(newX, player.getY()) && !grid.isOccupied(newX, player.getY() + player.getHeight())){
-                    player.moveRight();
-                }
-                break;
+    switch(key.toLowerCase()) {
+        case 'w':
+            newY = player.getY() - player.getYSpeed();
+            if(!grid.isOccupied(player.getX(), newY) && !grid.isOccupied(player.getX() + player.getWidth(), newY)){
+                player.moveUp();
             }
-        }
+            break;
+        case 'a':
+            newX = player.getX() - player.getXSpeed();
+            if(!grid.isOccupied(newX, player.getY()) && !grid.isOccupied(newX, player.getY() + player.getHeight())){
+                player.moveLeft();
+            }
+            break;
+        case 's':
+            newY = player.getY() + player.getYSpeed() + player.getHeight();
+            if(!grid.isOccupied(player.getX(), newY) && !grid.isOccupied(player.getX() + player.getWidth(), newY)){
+                player.moveDown();
+            }
+            break;
+        case 'd':
+            newX = player.getX() + player.getXSpeed() + player.getWidth();
+            if(!grid.isOccupied(newX, player.getY()) && !grid.isOccupied(newX, player.getY() + player.getHeight())){
+                player.moveRight();
+            }
+            break;
+    }
+
+    // Check for collision with exit
+    if(player.getX() + player.getWidth() > exit.getX() && player.getY() + player.getHeight() > exit.getY()){
+        return Player.ESCAPED;
+    }
+}
 
 function keyPressed(){
     switch(keyCode){
@@ -120,24 +133,24 @@ function keyReleased(){
 }
 
 function drawSceneBackground(){
-    stroke(255, 0, 0);
+    stroke(102, 32, 103);
     noFill();
-    rect(100, 100, 600, 400);
-    fill(255, 0, 0);
+    rect(530, 250, 500, 400);
+    fill(205, 104, 210);
     textSize(32);
 }
 
 function drawStart(){
     drawSceneBackground();
     textSize(20);
-    text("Collect all the treasure to open the exit", 150, 200);
-    text("Press Enter to start", 150, 300);
+    text("Collect all the treasure to open the exit", 300, 200);
+    text("Press Enter to start", 300, 300);
 }
 
 function drawWin(){
     drawSceneBackground();
-    text("You win!", 150, 150);
-    text("Press Enter to play again", 150, 350);
+    text("You win!", 300, 300);
+    text("Press Enter to play again", 350, 550);
 }
 
 function drawDied() {
@@ -165,7 +178,6 @@ function createBushes(){
         new Bush(150, 700, 50, 300),
         new Bush(0, 850, 100, 50),
         new Bush(0, 950, 50, 50),
-        new Bush(100, 850, 50, 100),
         // Bottom right section
         new Bush(750, 750, 100, 50),
         new Bush(850, 700, 50, 300),
@@ -245,4 +257,5 @@ function drawCutters(){
 }
 
 function drawExit() {
-    e
+    exit.draw();
+}
