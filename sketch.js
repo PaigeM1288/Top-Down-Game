@@ -4,7 +4,6 @@ let player;
 let bushes;
 let grid;
 let treasures;
-let cutters;
 let exit;
 
 const START = 0;
@@ -15,10 +14,12 @@ let state = START;
 
 let amulet;
 let bg;
+let collected;
 
 function preload(){
     bg = loadImage("assets/background.png");
     amulet = loadImage("assets/Amulet.png");
+    collected = loadSound("assets/short-success-sound-glockenspiel-treasure-video-game-6346.mp3");
 }
 
 function setup() {
@@ -31,8 +32,6 @@ function setup() {
     addBushes();
     createTreasures();
     addTreasures();
-    createCutters();
-    addCutters();
     createExit();
     addExit();
 }
@@ -100,10 +99,22 @@ function draw() {
             break;
     }
 
+    // Check for treasure collection
+    for(let i = treasures.length - 1; i >= 0; i--) {
+        const treasure = treasures[i];
+        if(player.getX() < treasure.getX() + treasure.getWidth() && player.getX() + player.getWidth() > treasure.getX() &&
+           player.getY() < treasure.getY() + treasure.getHeight() &&
+           player.getY() + player.getHeight() > treasure.getY()) {
+            treasures.splice(i, 1);
+            collected.play();
+        }
+    }
+
     // Check for collision with exit
     if(player.getX() + player.getWidth() > exit.getX() && player.getY() + player.getHeight() > exit.getY()){
         return Player.ESCAPED;
     }
+
 }
 
 function keyPressed(){
@@ -132,31 +143,30 @@ function keyReleased(){
     }
 }
 
+
 function drawSceneBackground(){
-    stroke(102, 32, 103);
-    noFill();
-    rect(530, 250, 500, 400);
     fill(205, 104, 210);
     textSize(32);
+    textAlign(CENTER, CENTER);
 }
 
 function drawStart(){
     drawSceneBackground();
     textSize(20);
-    text("Collect all the treasure to open the exit", 300, 200);
-    text("Press Enter to start", 300, 300);
+    text("Collect all the amulets to open the exit", 500, 450);
+    text("Press Enter to start", 500, 500);
 }
 
 function drawWin(){
     drawSceneBackground();
-    text("You win!", 300, 300);
-    text("Press Enter to play again", 350, 550);
+    text("You win!", 500, 450);
+    text("Press Enter to play again", 500, 500);
 }
 
 function drawDied() {
     drawSceneBackground();
-    text("You died :(", 150, 150);
-    text("Press Enter to play again", 150, 350);
+    text("You died", 500, 450);
+    text("Press Enter to play again", 500, 500);
 }
 
 function createBushes(){
@@ -184,6 +194,7 @@ function createBushes(){
         new Bush(700, 850, 100, 50),
         new Bush(700, 950, 50, 50),
         new Bush(800, 850, 50, 100),
+        new Bush(650, 700, 50, 50),
         // Center obstacles
         new Bush(400, 400, 200, 50),
         new Bush(400, 500, 50, 100),
@@ -192,7 +203,7 @@ function createBushes(){
 }
 
 function createTreasures(){
-    treasures = [
+    treasures =[
         // Top section
         new Treasure(200, 100, 50, 50),
         new Treasure(800, 100, 50, 50),
@@ -206,10 +217,6 @@ function createTreasures(){
         new Treasure(100, 500, 50, 50),
         new Treasure(900, 500, 50, 50)
     ];
-}
-
-function createCutters(){
-    cutters = [new Cutter(300, 300, 25, 25)];
 }
 
 function createExit() {
@@ -228,12 +235,6 @@ function addTreasures(){
     }
 }
 
-function addCutters(){
-    for(const cutter of cutters){
-        grid.addToGrid(cutter);
-    }
-}
-
 function addExit() {
     grid.addToGrid(exit);
 }
@@ -247,12 +248,6 @@ function drawBushes(){
 function drawTreasure(){
     for(const treasure of treasures){
         treasure.draw();
-    }
-}
-
-function drawCutters(){
-    for(const cutter of cutters){
-        cutter.draw();
     }
 }
 

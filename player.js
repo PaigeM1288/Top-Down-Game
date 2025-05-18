@@ -66,7 +66,7 @@ class Player extends GameObject {
     }
 
     /**
-     * Draw player before sprites
+     * Draw player
      */
     draw() {
         fill(this.#colour);
@@ -95,5 +95,10 @@ class Player extends GameObject {
 
     moveDown(){
         this.setY(this.getY() + this.#ySpeed);
+    }
+
+    stop(){
+        this.#xSpeed(0);
+        this.#ySpeed(0);
     }
 }

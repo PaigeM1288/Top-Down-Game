@@ -62,7 +62,10 @@ class Treasure extends StationaryObject{
 
     constructor(x, y, w, h){
         super(x, y, w, h, 0, color(255, 204, 0));
-        
+    }
+
+    draw(){
+        image(amulet, this.getX(), this.getY(), this.getWidth(), this.getHeight());
     }
 }
 
