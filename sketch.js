@@ -7,6 +7,12 @@ let treasures;
 let cutters;
 let exit;
 
+const START = 0;
+const PLAYING = 1;
+const WIN = 2;
+const DIED = 3;
+let state = START;
+
 function setup() {
     createCanvas(1000, 1000);
     movingNpc = new Movingnpc();

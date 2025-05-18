@@ -82,7 +82,7 @@ class Cutter extends StationaryObject{
 class Exit extends StationaryObject{
     /**
      * creates an exit point for player
-     *@param {number} x x coordinate
+     * @param {number} x x coordinate
      * @param {number} y y coordinate
      * @param {number} w width of exit
      * @param {number} h height of exit

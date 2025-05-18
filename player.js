@@ -2,6 +2,10 @@ class Player extends GameObject {
     #xSpeed = 0;
     #ySpeed = 0;
     #colour;
+    static DIED = "died";
+    static ALIVE = "alive";
+    static ESCAPED = "escaped";
+    #state;
 
     /**
      * creates user controlled Player on the screen
@@ -30,15 +34,23 @@ class Player extends GameObject {
     reset(){
         this.setX(width/2);
         this.setY(height/2);
+        this.#state = Playerlayer.ALIVE;
     }
 
     /**
      * move the player
      */
     move() {
+        if(this.#state === Player.ALIVE){
         this.setX(this.getX() + this.#xSpeed);
         this.setY(this.getY() + this.#ySpeed);
+        } else if(this.getX() === exit && this.getY() === exit){
+            this.#state = Player.ESCAPED;
+        } else if(this.getX() === enemy && this.getY() === enemy){
+            this.#state = Player.DIED;
+        }
 
+        return this.#state;
     }
 
     /**
@@ -83,10 +95,5 @@ class Player extends GameObject {
 
     moveDown(){
         this.setY(this.getY() + this.#ySpeed);
-    }
-
-    stop(){
-        this.setXSpeed(0);
-        this.setYSpeed(0);
     }
 }
