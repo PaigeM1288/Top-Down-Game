@@ -93,7 +93,21 @@ class Exit extends Cutter{
      */
 
      constructor(x, y, w, h){
-        super(x, y, w, h, 0, color(150));
+        super(x, y, w, h, 0, color(100));
        
      }
+}
+
+class Rocks extends StationaryObject{
+    /**
+     * creates rocks for cave screen
+     * @param {number} x x coordinate
+     * @param {number} y y coordinate
+     * @param {number} w width of rocks
+     * @param {number} h height of rocks
+     */
+
+    constructor(x, y, w, h){
+        super(x, y, w, h, 1, color(150));
+    }
 }

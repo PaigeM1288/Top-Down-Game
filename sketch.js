@@ -5,6 +5,7 @@ let bushes;
 let grid;
 let treasures;
 let exit;
+let rocks;
 
 const START = 0;
 const PLAYING = 1;
@@ -34,6 +35,7 @@ function setup() {
     addTreasures();
     createExit();
     addExit();
+
 }
 
 function draw() {
@@ -159,8 +161,12 @@ function drawStart(){
 
 function drawWin(){
     drawSceneBackground();
-    text("You win!", 500, 450);
-    text("Press Enter to play again", 500, 500);
+    text("You have entered the cave", 500, 450);
+    text("Press c to continue", 500, 500);
+    if(key === 'c'){
+        drawScreenTwo();
+    }
+    
 }
 
 function drawDied() {
@@ -188,6 +194,7 @@ function createBushes(){
         new Bush(150, 700, 50, 300),
         new Bush(0, 850, 100, 50),
         new Bush(0, 950, 50, 50),
+        new Bush(500, 950, 50, 50),
         // Bottom right section
         new Bush(750, 750, 100, 50),
         new Bush(850, 700, 50, 300),
@@ -196,8 +203,8 @@ function createBushes(){
         new Bush(800, 850, 50, 100),
         new Bush(650, 700, 50, 50),
         // Center obstacles
-        new Bush(400, 400, 200, 50),
-        new Bush(400, 500, 50, 100),
+        new Bush(400, 300, 50, 50),
+        new Bush(400, 550, 50, 100),
         new Bush(550, 400, 50, 200)
     ];
 }
@@ -253,4 +260,11 @@ function drawTreasure(){
 
 function drawExit() {
     exit.draw();
+}
+
+function drawScreenTwo(){
+    background(190);
+    player.draw();
+    createRocks();
+    addRocks();
 }
