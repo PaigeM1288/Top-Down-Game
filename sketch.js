@@ -132,7 +132,7 @@ function createCutters(){
 }
 
 function createExit() {
-    exit = new Exit(980, 900, 50, 50); // Create exit in bottom right corner
+    exit = new Exit(900, 950, 50, 50); // Create exit in bottom right corner
 }
 
 function addBushes(){

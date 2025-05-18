@@ -89,6 +89,7 @@ class Exit extends StationaryObject{
      */
 
      constructor(x, y, w, h){
-        super(x, y, w, h, 1, color(150));
+        super(x, y, w, h, 0, color(150));
+       
      }
 }
