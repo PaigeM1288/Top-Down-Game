@@ -31,20 +31,39 @@ function setup() {
 
 function draw() {
     background(255);
-    enemy.draw(); 
-    movingNpc.show();
-    movingNpc.step();
-    player.draw();
-    drawBushes();
-    drawTreasure();
-    drawCutters();
-    drawExit();
-    if (keyIsPressed) {
-    movePlayer();
+    switch(state){
+        case START:
+            drawStart();
+            break;
+        case PLAYING:
+            enemy.draw(); 
+            movingNpc.show();
+            movingNpc.step();
+            drawTreasure();
+            drawCutters();
+            drawExit();
+            player.draw();
+            drawBushes();
+            switch(movePlayer()){
+                case Player.ESCAPED:
+                    state = WIN;
+                    break;
+                case Player.DIED:
+                    state = DIED;
+                    break;
+            }
+        break;
+    case WIN:
+        drawWin();
+        break
+    case DIED:
+        drawDied();
+        break;
     }
+
 }
 
-function movePlayer() {
+    function movePlayer(){
     let newX, newY;
         switch(key.toLowerCase()) {
             case 'w':
@@ -70,17 +89,61 @@ function movePlayer() {
                 if(!grid.isOccupied(newX, player.getY()) && !grid.isOccupied(newX, player.getY() + player.getHeight())){
                     player.moveRight();
                 }
-                break;                
-    }
+                break;
+            }
+        }
 
-    if (keyIsDown(SHIFT)){
+function keyPressed(){
+    switch(keyCode){
+    case SHIFT:
         player.setXSpeed(10);
         player.setYSpeed(10);
+        break;
+
+    case ENTER:
+        case START:
+        case WIN:
+        case DIED:
+            player.reset();
+            state = PLAYING;
+            break;
     }
-    else {
-        player.setXSpeed(5);
-        player.setYSpeed(5);
+}
+
+function keyReleased(){
+    switch(keyCode){
+        case SHIFT:
+            player.setXSpeed(5);
+            player.setYSpeed(5);
+            break;
     }
+}
+
+function drawSceneBackground(){
+    stroke(255, 0, 0);
+    noFill();
+    rect(100, 100, 600, 400);
+    fill(255, 0, 0);
+    textSize(32);
+}
+
+function drawStart(){
+    drawSceneBackground();
+    textSize(20);
+    text("Collect all the treasure to open the exit", 150, 200);
+    text("Press Enter to start", 150, 300);
+}
+
+function drawWin(){
+    drawSceneBackground();
+    text("You win!", 150, 150);
+    text("Press Enter to play again", 150, 350);
+}
+
+function drawDied() {
+    drawSceneBackground();
+    text("You died :(", 150, 150);
+    text("Press Enter to play again", 150, 350);
 }
 
 function createBushes(){
@@ -182,5 +245,4 @@ function drawCutters(){
 }
 
 function drawExit() {
-    exit.draw();
-}
+    e

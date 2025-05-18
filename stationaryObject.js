@@ -79,7 +79,7 @@ class Cutter extends StationaryObject{
     }
 }
 
-class Exit extends StationaryObject{
+class Exit extends Cutter{
     /**
      * creates an exit point for player
      * @param {number} x x coordinate

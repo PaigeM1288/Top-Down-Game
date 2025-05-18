@@ -34,7 +34,7 @@ class Player extends GameObject {
     reset(){
         this.setX(width/2);
         this.setY(height/2);
-        this.#state = Playerlayer.ALIVE;
+        this.#state = Player.ALIVE;
     }
 
     /**
@@ -44,9 +44,9 @@ class Player extends GameObject {
         if(this.#state === Player.ALIVE){
         this.setX(this.getX() + this.#xSpeed);
         this.setY(this.getY() + this.#ySpeed);
-        } else if(this.getX() === exit && this.getY() === exit){
+        } else if(this.getX() == exit && this.getY() == exit){
             this.#state = Player.ESCAPED;
-        } else if(this.getX() === enemy && this.getY() === enemy){
+        } else if(this.getX() == Enemy && this.getY() == Enemy){
             this.#state = Player.DIED;
         }
 
