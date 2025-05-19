@@ -49,6 +49,10 @@ class Bush extends StationaryObject{
     constructor(x, y, w, h){
         super(x, y, w, h, 1, color(110, 255, 10));
     }
+
+    draw(){
+        image(shrub, this.getX(), this.getY(), this.getWidth(), this.getHeight());
+    }
 }
 
 class Treasure extends StationaryObject{
@@ -98,6 +102,24 @@ class Exit extends Cutter{
      }
 }
 
+class Diamond extends Treasure{
+    /**
+     * creates diamonds for cave screen
+     * @param {number} x x coordinate
+     * @param {number} y y coordinate
+     * @param {number} w width of diamonds
+     * @param {number} h height of diamonds
+     */
+
+    constructor(x, y, w, h){
+        super(x, y, w, h, 0, color(255));
+    }
+
+    draw(){
+        image(diamondObj, this.getX(), this.getY(), this.getWidth(), this.getHeight());
+    }
+}
+
 class Rock extends StationaryObject{
     /**
      * creates rocks for cave screen
@@ -109,5 +131,9 @@ class Rock extends StationaryObject{
 
     constructor(x, y, w, h){
         super(x, y, w, h, 1, color(150));
+    }
+
+    draw(){
+        image(boulder, this.getX(), this.getY(), this.getWidth(), this.getHeight());
     }
 }
