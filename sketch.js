@@ -147,6 +147,7 @@ function keyPressed(){
     case ENTER:
         if(state === START) {
             state = PLAYING;
+        }else{
             player.reset();
         }
         break;
@@ -174,7 +175,9 @@ function drawStart(){
     drawSceneBackground();
     textSize(20);
     text("Collect all the amulets to open the exit", 500, 450);
-    text("Press Enter to start", 500, 500);
+    text("Use WASD to move and if you get stuck press Enter", 500, 500);
+    text("Press Shift to go quicker", 500, 550);
+    text("Press Enter to start", 500, 600);
 }
 
 function drawCaveScreen(){
@@ -419,20 +422,10 @@ function drawWin() {
     drawSceneBackground();
     textSize(32);
     text("Congratulations! You've collected all the diamonds!", 500, 450);
-    text("Press P to play again", 500, 500);
+    text("Press R to play again", 500, 500);
     
-    if(key.toLowerCase() === 'p') {
+    if(key.toLowerCase() === 'r') {
         state = START;
         player.reset();
-    }
-}
-
-function drawDied() {
-    drawSceneBackground();
-    text("You died", 500, 450);
-    text("Press R to restart", 500, 500);
-
-    if(key.toLowerCase() === 'r'){
-        state = SCREEN_TWO;
     }
 }
