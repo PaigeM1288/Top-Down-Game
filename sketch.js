@@ -12,6 +12,7 @@ const PLAYING = 1;
 const CAVE = 2;
 const DIED = 3;
 const SCREEN_TWO = 4;
+const WIN = 5;
 let state = START;
 
 let amulet;
@@ -84,6 +85,9 @@ function draw() {
         case SCREEN_TWO:
             drawScreenTwo();
             break;
+        case WIN:
+            drawWin();
+            break;
     }
 }
 
@@ -141,10 +145,10 @@ function keyPressed(){
         break;
 
     case ENTER:
-    case START:
-    case CAVE:
-        player.reset();
-        state = PLAYING;
+        if(state === START) {
+            state = PLAYING;
+            player.reset();
+        }
         break;
     }
 }
@@ -184,16 +188,6 @@ function drawCaveScreen(){
         addRocks();
         createDiamonds();
         addDiamonds();
-    }
-}
-
-function drawDied() {
-    drawSceneBackground();
-    text("You died", 500, 450);
-    text("Press R to restart", 500, 500);
-
-    if(key.toLowerCase() === 'r'){
-        state = SCREEN_TWO;
     }
 }
 
@@ -294,6 +288,7 @@ function drawScreenTwo() {
     enemy.draw();
     player.draw();
     drawRocks();
+    
 }
 
 function movePlayerTwo() {
@@ -332,6 +327,11 @@ function movePlayerTwo() {
            player.getY() + player.getHeight() > diamond.getY()) {
             diamonds.splice(i, 1);
             caveCollected.play();
+            
+            // Check if all diamonds are collected
+            if(diamonds.length === 0) {
+                state = WIN;
+            }
         }
     }
 }
@@ -412,5 +412,27 @@ function addDiamonds(){
 function drawDiamonds(){
     for(const diamond of diamonds){
         diamond.draw();
+    }
+}
+
+function drawWin() {
+    drawSceneBackground();
+    textSize(32);
+    text("Congratulations! You've collected all the diamonds!", 500, 450);
+    text("Press P to play again", 500, 500);
+    
+    if(key.toLowerCase() === 'p') {
+        state = START;
+        player.reset();
+    }
+}
+
+function drawDied() {
+    drawSceneBackground();
+    text("You died", 500, 450);
+    text("Press R to restart", 500, 500);
+
+    if(key.toLowerCase() === 'r'){
+        state = SCREEN_TWO;
     }
 }
