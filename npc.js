@@ -16,5 +16,8 @@ class Movingnpc{
         rectMode(CENTER);
         fill(255, 0, 0);
         square(this.x, this.y, 50);
+        fill(255);
+        text("There are amulets all over the place!", this.x, this.y - 50);
+
     }
 }

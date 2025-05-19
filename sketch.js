@@ -22,6 +22,7 @@ let diamondObj;
 let shrub;
 let caveBg;
 let startBg;
+let caveCollected;
 
 function preload(){
     grass = loadImage("assets/grass.png");
@@ -32,6 +33,7 @@ function preload(){
     diamondObj = loadImage("assets/diamond.png");
     caveBg = loadImage("assets/Cave.png");
     startBg = loadImage("assets/background.png");
+    caveCollected = loadSound("assets/diamond-found-190255_02.mp3");
 
 }
 
@@ -140,7 +142,6 @@ function keyPressed(){
 
     case ENTER:
     case START:
-    case DIED:
     case CAVE:
         player.reset();
         state = PLAYING;
@@ -175,8 +176,8 @@ function drawStart(){
 function drawCaveScreen(){
     drawSceneBackground();
     text("You have entered the cave, collect the diamonds", 500, 450);
-    text("Press c to continue", 500, 500);
-    if(key === 'c') {
+    text("Press C to continue", 500, 500);
+    if(key.toLowerCase() === 'c') {
         state = SCREEN_TWO;
         player.reset();
         createRocks();
@@ -189,7 +190,11 @@ function drawCaveScreen(){
 function drawDied() {
     drawSceneBackground();
     text("You died", 500, 450);
-    text("Press Enter to play again", 500, 500);
+    text("Press R to restart", 500, 500);
+
+    if(key.toLowerCase() === 'r'){
+        state = SCREEN_TWO;
+    }
 }
 
 function createBushes(){
@@ -326,7 +331,7 @@ function movePlayerTwo() {
            player.getY() < diamond.getY() + diamond.getHeight() &&
            player.getY() + player.getHeight() > diamond.getY()) {
             diamonds.splice(i, 1);
-            collected.play();
+            caveCollected.play();
         }
     }
 }
@@ -359,7 +364,7 @@ function createRocks() {
         // Center rocks
         new Rock(150, 500, 50, 50),
         new Rock(450, 500, 50, 50),
-        new Rock(750, 500, 50, 50),
+        new Rock(750, 800, 50, 50),
         
         // Vertical barriers
         new Rock(400, 100, 50, 50),
@@ -384,6 +389,17 @@ function drawRocks(){
 function createDiamonds(){
     diamonds = [
         new Diamond(800, 500, 50, 50),
+        new Diamond(300, 550, 50, 50),
+        new Diamond(550, 900, 50, 50),
+        new Diamond(100, 900, 50, 50),
+        new Diamond(200, 700, 50, 50),
+        new Diamond(250, 500, 50, 50),
+        new Diamond(850, 600, 50, 50),
+        new Diamond(800, 200, 50, 50),
+        new Diamond(450, 800, 50, 50),
+        new Diamond(10, 500, 50, 50),
+        new Diamond(900, 10, 50, 50)
+
     ];
 }
 

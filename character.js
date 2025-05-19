@@ -21,9 +21,9 @@ class Character{
         rectMode(CENTER);
         fill(this.#colour);
         square(this.#npcX, this.#npcY, this.#size);
-        textAlign(CENTER, CENTER);
         fill(255);
-        text(this.#name, this.#npcX, this.#npcY);
+        textSize(20);
+        text("Leave Now!", this.#npcX, this.#npcY);
     }
 
     getnpcX(){
@@ -72,7 +72,7 @@ class Character{
          */
 
         constructor(speed){
-            super(Enemy.#SIZE/2, height - Enemy.#SIZE/2, color(100, 200, 120), "Enemy", 50);
+            super(Enemy.#SIZE/2, height - Enemy.#SIZE/2, color(100, 200, 120)," ", 50);
             this.#speed = speed;
             this.#state = this.#MOVE_RIGHT;
         }
