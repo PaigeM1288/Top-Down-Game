@@ -98,7 +98,7 @@ class Exit extends Cutter{
      }
 }
 
-class Rocks extends StationaryObject{
+class Rock extends StationaryObject{
     /**
      * creates rocks for cave screen
      * @param {number} x x coordinate

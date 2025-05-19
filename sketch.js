@@ -9,8 +9,9 @@ let rocks;
 
 const START = 0;
 const PLAYING = 1;
-const WIN = 2;
+const CAVE = 2;
 const DIED = 3;
+const SCREEN_TWO = 4;
 let state = START;
 
 let amulet;
@@ -41,38 +42,39 @@ function setup() {
 function draw() {
     background(255);
     image(bg, 0, 0, 1000, 1000);
-    switch(state){
+    switch(state) {
         case START:
             drawStart();
             break;
-        case PLAYING:
-            enemy.draw(); 
+        case PLAYING: 
             movingNpc.show();
             movingNpc.step();
             drawTreasure();
             drawExit();
             player.draw();
             drawBushes();
-            switch(movePlayer()){
+            switch(movePlayer()) {
                 case Player.ESCAPED:
-                    state = WIN;
+                    state = CAVE;
                     break;
                 case Player.DIED:
                     state = DIED;
                     break;
             }
-        break;
-    case WIN:
-        drawWin();
-        break
-    case DIED:
-        drawDied();
-        break;
+            break;
+        case CAVE:
+            drawCaveScreen();
+            break;
+        case DIED:
+            drawDied();
+            break;
+        case SCREEN_TWO:
+            drawScreenTwo();
+            break;
     }
-
 }
 
-    function movePlayer(){
+function movePlayer(){
     let newX, newY;
     switch(key.toLowerCase()) {
         case 'w':
@@ -116,7 +118,6 @@ function draw() {
     if(player.getX() + player.getWidth() > exit.getX() && player.getY() + player.getHeight() > exit.getY()){
         return Player.ESCAPED;
     }
-
 }
 
 function keyPressed(){
@@ -127,12 +128,12 @@ function keyPressed(){
         break;
 
     case ENTER:
-        case START:
-        case WIN:
-        case DIED:
-            player.reset();
-            state = PLAYING;
-            break;
+    case START:
+    case DIED:
+    case CAVE:
+        player.reset();
+        state = PLAYING;
+        break;
     }
 }
 
@@ -159,14 +160,16 @@ function drawStart(){
     text("Press Enter to start", 500, 500);
 }
 
-function drawWin(){
+function drawCaveScreen(){
     drawSceneBackground();
     text("You have entered the cave", 500, 450);
     text("Press c to continue", 500, 500);
-    if(key === 'c'){
-        drawScreenTwo();
+    if(key === 'c') {
+        state = SCREEN_TWO;
+        player.reset();
+        createRocks();
+        addRocks();
     }
-    
 }
 
 function drawDied() {
@@ -262,9 +265,96 @@ function drawExit() {
     exit.draw();
 }
 
-function drawScreenTwo(){
-    background(190);
+function drawScreenTwo() {
+    background(210);
     player.draw();
-    createRocks();
-    addRocks();
+    movePlayerTwo();
+    drawRocks();
+    enemy.draw();
+}
+
+function movePlayerTwo() {
+    let newX, newY;
+    switch(key.toLowerCase()) {
+        case 'w':
+            newY = player.getY() - player.getYSpeed();
+            if(!grid.isOccupied(player.getX(), newY) && !grid.isOccupied(player.getX() + player.getWidth(), newY)) {
+                player.moveUp();
+            }
+            break;
+        case 'a':
+            newX = player.getX() - player.getXSpeed();
+            if(!grid.isOccupied(newX, player.getY()) && !grid.isOccupied(newX, player.getY() + player.getHeight())) {
+                player.moveLeft();
+            }
+            break;
+        case 's':
+            newY = player.getY() + player.getYSpeed() + player.getHeight();
+            if(!grid.isOccupied(player.getX(), newY) && !grid.isOccupied(player.getX() + player.getWidth(), newY)) {
+                player.moveDown();
+            }
+            break;
+        case 'd':
+            newX = player.getX() + player.getXSpeed() + player.getWidth();
+            if(!grid.isOccupied(newX, player.getY()) && !grid.isOccupied(newX, player.getY() + player.getHeight())) {
+                player.moveRight();
+            }
+            break;
+    }
+}
+
+function createRocks() {
+    rocks = [
+        // Top section
+        new Rock(100, 100, 50, 50),
+        new Rock(200, 150, 50, 50),
+        new Rock(300, 100, 50, 50),
+        new Rock(400, 200, 50, 50),
+        new Rock(500, 150, 50, 50),
+        new Rock(600, 100, 50, 50),
+        new Rock(700, 200, 50, 50),
+        new Rock(800, 150, 50, 50),
+        
+        // Middle section
+        new Rock(150, 300, 50, 50),
+        new Rock(250, 400, 50, 50),
+        new Rock(350, 350, 50, 50),
+        new Rock(450, 300, 50, 50),
+        new Rock(550, 400, 50, 50),
+        new Rock(650, 350, 50, 50),
+        new Rock(750, 300, 50, 50),
+        
+        // Bottom section
+        new Rock(100, 600, 50, 50),
+        new Rock(200, 650, 50, 50),
+        new Rock(300, 700, 50, 50),
+        new Rock(400, 650, 50, 50),
+        new Rock(500, 600, 50, 50),
+        new Rock(600, 650, 50, 50),
+        new Rock(700, 700, 50, 50),
+        new Rock(800, 650, 50, 50),
+        
+        // Some larger rocks
+        new Rock(150, 500, 100, 50),
+        new Rock(450, 500, 100, 50),
+        new Rock(750, 500, 100, 50),
+        
+        // Vertical barriers
+        new Rock(400, 100, 50, 200),
+        new Rock(600, 100, 50, 200),
+        new Rock(400, 700, 50, 200),
+        new Rock(600, 700, 50, 200)
+    ];
+}
+
+function addRocks(){
+    for(const rock of rocks){
+        grid.addToGrid(rock);
+    }
+}
+
+function drawRocks(){
+    for(const rock of rocks){
+        rock.draw();
+    }
 }
