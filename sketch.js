@@ -176,7 +176,7 @@ function drawStart(){
     textSize(20);
     text("Collect all the amulets to open the exit", 500, 450);
     text("Use WASD to move and if you get stuck press Enter", 500, 500);
-    text("Press Shift to go quicker", 500, 550);
+    text("Hold Shift to go quicker", 500, 550);
     text("Press Enter to start", 500, 600);
 }
 
