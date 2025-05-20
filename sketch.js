@@ -68,7 +68,7 @@ function draw() {
             player.draw();
             drawBushes();
             switch(movePlayer()) {
-                case Player.ESCAPED:
+                case Player.EXITS:
                     state = CAVE;
                     break;
                 case Player.DIED:
@@ -133,7 +133,7 @@ function movePlayer(){
 
     // Check for collision with exit
     if(player.getX() + player.getWidth() > exit.getX() && player.getY() + player.getHeight() > exit.getY()){
-        return Player.ESCAPED;
+        return Player.EXITS;
     }
 }
 

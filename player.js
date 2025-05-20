@@ -4,7 +4,7 @@ class Player extends GameObject {
     #colour;
     static DIED = "died";
     static ALIVE = "alive";
-    static ESCAPED = "escaped";
+    static EXITS = "exits";
     #state;
 
     /**
@@ -45,7 +45,7 @@ class Player extends GameObject {
         this.setX(this.getX() + this.#xSpeed);
         this.setY(this.getY() + this.#ySpeed);
         } else if(this.getX() == exit && this.getY() == exit){
-            this.#state = Player.ESCAPED;
+            this.#state = Player.EXITS;
         } else if(this.getX() == Enemy && this.getY() == Enemy){
             this.#state = Player.DIED;
         }
