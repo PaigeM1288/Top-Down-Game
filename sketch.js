@@ -172,8 +172,7 @@ function drawTextBg(){
 }
 
 function drawStart(){
-    drawTextBg
-();
+    drawTextBg();
     textSize(20);
     text("Collect all the amulets to open the exit", 500, 450);
     text("Use WASD to move and if you get stuck press Enter", 500, 500);
@@ -420,8 +419,7 @@ function drawDiamonds(){
 }
 
 function drawWin() {
-    drawTextBg
-();
+    drawTextBg();
     textSize(32);
     text("Congratulations! You've collected all the diamonds!", 500, 450);
     text("Press R to play again", 500, 500);
@@ -429,5 +427,6 @@ function drawWin() {
     if(key.toLowerCase() === 'r') {
         state = START;
         player.reset();
+        createTreasures();
     }
 }
