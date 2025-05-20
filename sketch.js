@@ -40,7 +40,7 @@ function preload(){
 
 function setup() {
     createCanvas(1000, 1000);
-    movingNpc = new Movingnpc();
+    movingNpc = new Movingnpc(); //creates moving npc
     enemy = new Enemy(5); // Create an enemy with a speed of 5
     player = new Player(width/2, height/2, 40, 40, 5, 5, color(0, 0, 255)); // Create player with a 40x 40 size, a speed of 5 and in the colour blue
     createBushes();
@@ -164,7 +164,7 @@ function keyReleased(){
 }
 
 
-function drawSceneBackground(){
+function drawTextBg(){
     fill(205, 104, 210);
     image(startBg, 0, 0, 1000, 1000)
     textSize(32);
@@ -172,7 +172,8 @@ function drawSceneBackground(){
 }
 
 function drawStart(){
-    drawSceneBackground();
+    drawTextBg
+();
     textSize(20);
     text("Collect all the amulets to open the exit", 500, 450);
     text("Use WASD to move and if you get stuck press Enter", 500, 500);
@@ -181,7 +182,7 @@ function drawStart(){
 }
 
 function drawCaveScreen(){
-    drawSceneBackground();
+    drawTextBg();
     text("You have entered the cave, collect the diamonds", 500, 450);
     text("Press C to continue", 500, 500);
     if(key.toLowerCase() === 'c') {
@@ -419,7 +420,8 @@ function drawDiamonds(){
 }
 
 function drawWin() {
-    drawSceneBackground();
+    drawTextBg
+();
     textSize(32);
     text("Congratulations! You've collected all the diamonds!", 500, 450);
     text("Press R to play again", 500, 500);
