@@ -349,6 +349,8 @@ function createRocks() {
         new Rock(500, 150, 50, 50),
         new Rock(600, 100, 50, 50),
         new Rock(700, 200, 50, 50),
+        new Rock(400, 100, 50, 50),
+        new Rock(650, 150, 50, 50),
         
         // Middle section
         new Rock(350, 350, 50, 50),
@@ -363,17 +365,13 @@ function createRocks() {
         new Rock(600, 650, 50, 50),
         new Rock(700, 700, 50, 50),
         new Rock(900, 650, 50, 50),
+        new Rock(750, 800, 50, 50),
+        new Rock(400, 700, 50, 50),
+        new Rock(600, 700, 50, 50),
         
         // Center rocks
         new Rock(150, 500, 50, 50),
-        new Rock(450, 500, 50, 50),
-        new Rock(750, 800, 50, 50),
-        
-        // Vertical barriers
-        new Rock(400, 100, 50, 50),
-        new Rock(600, 100, 50, 50),
-        new Rock(400, 700, 50, 50),
-        new Rock(600, 700, 50, 50)
+        new Rock(450, 500, 50, 50)
     ];
 }
 
@@ -391,18 +389,20 @@ function drawRocks(){
 
 function createDiamonds(){
     diamonds = [
-        new Diamond(800, 500, 50, 50),
+        //Top Diamonds
+        new Diamond(800, 200, 50, 50),
+        new Diamond(900, 10, 50, 50),
+        //Middle Diamonds
+        new Diamond(250, 500, 50, 50),
         new Diamond(300, 550, 50, 50),
-        new Diamond(550, 900, 50, 50),
+        new Diamond(10, 500, 50, 50),
+        new Diamond(850, 600, 50, 50),
+        new Diamond(800, 500, 50, 50),
+        //Bottom Diamonds
         new Diamond(100, 900, 50, 50),
         new Diamond(200, 700, 50, 50),
-        new Diamond(250, 500, 50, 50),
-        new Diamond(850, 600, 50, 50),
-        new Diamond(800, 200, 50, 50),
-        new Diamond(450, 800, 50, 50),
-        new Diamond(10, 500, 50, 50),
-        new Diamond(900, 10, 50, 50)
-
+        new Diamond(550, 900, 50, 50),
+        new Diamond(450, 800, 50, 50)
     ];
 }
 
